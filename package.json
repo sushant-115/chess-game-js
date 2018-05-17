@@ -1,0 +1,15 @@
+{
+  "name": "sushant-chess-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/mountblue/may-18-j3/sushant-chess-game-js"
+  },
+  "author": "",
+  "license": "ISC"
+}
