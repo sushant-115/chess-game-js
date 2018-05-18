@@ -17,6 +17,7 @@
 let turnPredictor=[] ;
 let turn=0;;
 let PieceSelected =[];
+let newPieces ;
   
 
   function preload() {
@@ -122,13 +123,13 @@ let PieceSelected =[];
         }
         if (i == 0 && j == 4) /*image(kingB ,posX+10 ,posY+10 , 50 ,50);*/ {
           let ele = new King(kingB, j, i, 'B');
-           ele.color ='B';
+           ele.color ='K';
           pieces.push(ele);
           piecesPositions.push([j, i]);
         }
         if (i == 7 && j == 3) /*image(kingW ,posX+10 ,posY+10 , 50 ,50);*/ {
           let ele = new King(kingW, j, i, 'W');
-          ele.color ='W';
+          ele.color ='K';
           pieces.push(ele);
           piecesPositions.push([j, i]);
         }
@@ -151,6 +152,7 @@ let PieceSelected =[];
       if (posY == height) posY = 0;
 
     }
+      newPieces= pieces.slice();
   }
 
   function targetShow(pX, pY) {
@@ -185,6 +187,7 @@ function turnShow(pieces){
 }
 
   function mousePressed() {
+       newPieces = pieces.slice();
     let pX = Math.floor(mouseX / 75);
     let pY = Math.floor(mouseY / 75);
     /*console.log(pX + '  ' + pY);*/
@@ -196,17 +199,34 @@ function turnShow(pieces){
     if (target) {
       if (!Array.isArray(target[0])) {
         if (pX == target[0] && pY == target[1]) {
+            let length =newPieces.length;
           for (let i = 0; i < pieces.length; i++) {
             /*console.log(pieces[i].pX+'  '+i+'  '+pieces[i].pY);*/
             if (pieces[i].pX == highL.pX && pieces[i].pY == highL.pY) {
               highL.update(pX, pY);
               /*console.log('on orange');
               console.log('this is' + pieces[i].pX + '   ' + piecesPositions[i][0])*/
+                for(let y=0;y<pieces.length;y++){
+                    if(pieces[y].pX==pX && pieces[y].pY==pY){
+                       if(pieces[y].color=='K'){
+                           noLoop();
+                           if(pieces[y].col='B') alert('White won');
+                           else alert('Black won');
+                       }
+                        pieces.splice(y , 1);
+                         console.log('deleted  '+ y);
+                        
+                        pieces[i].update(pX, pY);
+                        console.log(length +'  '+pieces.length);
+                    }
+                }
+                
+                if(length == pieces.length);
               pieces[i].update(pX, pY);
              /* console.log(pieces[i].pX + '   ' + piecesPositions[i][0])*/
               piecesPositions[i][0] = pX;
               piecesPositions[i][1] = pY;
-
+                
               target = [];
                 if(turn==0) turn=1;
                 else turn=0;
@@ -230,11 +250,32 @@ function turnShow(pieces){
         for (let c = 0; c < target.length; c++) {
 
           if (pX == target[c][0] && pY == target[c][1]) {
-            for (let i = 0; i < pieces.length; i++) {
+              let length=newPieces.length;
+            
+              for (let i = 0; i < pieces.length; i++) {
               /*console.log(pieces[i].pX+'  '+i+'  '+pieces[i].pY);*/
               if (pieces[i].pX == highL.pX && pieces[i].pY == highL.pY) {
                 highL.update(pX, pY);
                /* console.log('on orange');*/
+                  for(let y=0;y<pieces.length;y++){
+                    if(pieces[y].pX==pX && pieces[y].pY==pY){
+                        if(pieces[i].col!=pieces[y]){
+                             if(pieces[y].color=='K'){
+                           noLoop();
+                           if(pieces[y].col='B') alert('White won');
+                           else alert('Black won');
+                       }
+                        pieces.splice(y ,1);}
+                        console.log('deleted  '+ y);
+                        if(pieces[i].col=='B')
+                        pieces[i].update(pX, pY);
+                        else pieces[i-1].update(pX,pY);
+                       
+                         console.log(length +'  '+pieces.length);
+                        break;
+                    }
+                }
+                  if(length == pieces.length)
                 pieces[i].update(pX, pY);
                 piecesPositions[i][0] = pX;
                 piecesPositions[i][1] = pY;
@@ -254,6 +295,7 @@ function turnShow(pieces){
             for(let r =0;r<turnPredictor.length;r++){
                 if(turnPredictor[r][0]==pX &&turnPredictor[r][1]==pY)
                      target = pieces[i].suggestion(pieces);
+                
             }
          
 
@@ -274,6 +316,7 @@ function turnShow(pieces){
          return;
        }
      }*/
+     
   }
 
   function grid() {

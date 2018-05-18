@@ -16,12 +16,26 @@ class SoldierB {
        /* console.log('inside suggestion');*/
         let moves = [
             [-1, 1],
-            [1, 0],
+           /* [0, 1],*/
             [1, 1]
         ];
         let forwardX = [];
-        forwardX.push(this.pX);
-        forwardX.push(this.pY + 1);
+        /*forwardX.push([this.pX,this.py+1]);*/
+        for(let c=0;c<moves.length;c++){
+            for(let d=0;d<pieces.length;d++){
+                if(this.pX+moves[c][0]==pieces[d].pX && this.pY+moves[c][1]==pieces[d].pY){
+                    if(this.col!=pieces[d].col){
+                        forwardX.push([this.pX+moves[c][0], this.pY+moves[c][1]]);
+                    }
+                }
+            }
+        }
+        let counter =0;
+        for(let s=0;s<pieces.length;s++){
+            if(pieces[s].pX == this.pX && pieces[s].pY ==this.pY+1) counter++;
+        }
+        if(counter==0) forwardX.push([this.pX,this.pY+1]);
+        
         return forwardX;
 
     }
@@ -43,18 +57,25 @@ class SoldierW {
     }
     suggestion(pieces) {
         let moves = [
-            [0, 1],
-            [1, 1],
-            [1, 0],
-            [0, -1],
             [1, -1],
-            [-1, -1],
-            [-1, 0],
-            [-1, 1]
+           /* [0, 1],*/
+            [-1, -1]
         ];
         let forwardX = [];
-        forwardX.push(this.pX);
-        forwardX.push(this.pY - 1);
+        for(let c=0;c<moves.length;c++){
+            for(let d=0;d<pieces.length;d++){
+                if(this.pX+moves[c][0]==pieces[d].pX && this.pY+moves[c][1]==pieces[d].pY){
+                    if(this.col!=pieces[d].col){
+                        forwardX.push([this.pX+moves[c][0], this.pY+moves[c][1]]);
+                    }
+                }
+            }
+        }
+        let counter =0;
+        for(let s=0;s<pieces.length;s++){
+            if(pieces[s].pX == this.pX && pieces[s].pY ==this.pY-1) counter++;
+        }
+        if(counter==0) forwardX.push([this.pX,this.pY-1]);
         return forwardX;
     }
 
@@ -90,6 +111,8 @@ class King {
             var counter = 0;
             var x = this.pX + moves[a][0];
             var y = this.pY + moves[a][1];
+            
+            var col =this.col;
             if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
                 var promise = new Promise(function (resolve, reject) {
                     for (let e = 0; e < pieces.length; e++) {
@@ -97,6 +120,8 @@ class King {
                         var y1 = pieces[e].pY;
                         if (x == x1 & y == y1) {
                             counter = 1;
+                            if(col!=pieces[e].col)
+                                    forwardX1.push([x,y]);
                             /*console.log('matched');*/
                         }
                     }
@@ -108,6 +133,7 @@ class King {
                 }
             }
         }
+        
         return forwardX1;
     }
 }
@@ -205,6 +231,7 @@ class Queen {
                 var counter = 0;
                 var x = this.pX + movesRF[a][0];
                 var y = this.pY + movesRF[a][1];
+                var col =this.col;
                 var bbb = false;
                 if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
                     var promise = new Promise(function (resolve, reject) {
@@ -214,6 +241,8 @@ class Queen {
                             if (x == x1 & y == y1) {
                                 counter = 1;
                                 bbb = true;
+                                if(col!=pieces[e].col)
+                                    forwardX1.push([x,y]);
                                 /*console.log('matched');*/
                             }
                         }
@@ -234,6 +263,7 @@ class Queen {
                 var counter = 0;
                 var x = this.pX + movesLF[a][0];
                 var y = this.pY + movesLF[a][1];
+                var col =this.col;
                 var bbb = false;
                 if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
                     var promise = new Promise(function (resolve, reject) {
@@ -243,6 +273,8 @@ class Queen {
                             if (x == x1 & y == y1) {
                                 counter = 1;
                                 bbb = true;
+                                if(col!=pieces[e].col)
+                                    forwardX1.push([x,y]);
                                 /*console.log('matched');*/
                             }
                         }
@@ -263,6 +295,7 @@ class Queen {
                 var counter = 0;
                 var x = this.pX + movesLB[a][0];
                 var y = this.pY + movesLB[a][1];
+                var col =this.col;
                 var bbb = false;
                 if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
                     var promise = new Promise(function (resolve, reject) {
@@ -272,6 +305,8 @@ class Queen {
                             if (x == x1 & y == y1) {
                                 counter = 1;
                                 bbb = true;
+                                if(col!=pieces[e].col)
+                                    forwardX1.push([x,y]);
                                /* console.log('matched');*/
                             }
                         }
@@ -291,6 +326,7 @@ class Queen {
                 var counter = 0;
                 var x = this.pX + movesRB[a][0];
                 var y = this.pY + movesRB[a][1];
+                var col=this.col;
                 var bbb = false;
                 if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
                     var promise = new Promise(function (resolve, reject) {
@@ -300,6 +336,8 @@ class Queen {
                             if (x == x1 & y == y1) {
                                 counter = 1;
                                 bbb = true;
+                                if(col!=pieces[e].col)
+                                    forwardX1.push([x,y]);
                                 /*console.log('matched');*/
                             }
                         }
@@ -321,6 +359,7 @@ class Queen {
                 var counter = 0;
                 var x = this.pX + moveR[a][0];
                 var y = this.pY + moveR[a][1];
+                var col=this.col;
                 var bbb = false;
                 if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
                     var promise = new Promise(function (resolve, reject) {
@@ -330,6 +369,8 @@ class Queen {
                             if (x == x1 & y == y1) {
                                 counter = 1;
                                 bbb = true;
+                                if(col!=pieces[e].col)
+                                    forwardX1.push([x,y]);
                                /* console.log('matched');*/
                             }
                         }
@@ -350,6 +391,7 @@ class Queen {
                 var counter = 0;
                 var x = this.pX + moveL[a][0];
                 var y = this.pY + moveL[a][1];
+                var col =this.col;
                 var bbb = false;
                 if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
                     var promise = new Promise(function (resolve, reject) {
@@ -359,6 +401,8 @@ class Queen {
                             if (x == x1 & y == y1) {
                                 counter = 1;
                                 bbb = true;
+                                if(col!=pieces[e].col)
+                                    forwardX1.push([x,y]);
                                 /*console.log('matched');*/
                             }
                         }
@@ -379,6 +423,7 @@ class Queen {
                 var counter = 0;
                 var x = this.pX + moveB[a][0];
                 var y = this.pY + moveB[a][1];
+                var col=this.col;
                 var bbb = false;
                 if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
                     var promise = new Promise(function (resolve, reject) {
@@ -388,6 +433,8 @@ class Queen {
                             if (x == x1 & y == y1) {
                                 counter = 1;
                                 bbb = true;
+                                if(col!=pieces[e].col)
+                                    forwardX1.push([x,y]);
                                 /*console.log('matched');*/
                             }
                         }
@@ -407,6 +454,7 @@ class Queen {
                 var counter = 0;
                 var x = this.pX + moveT[a][0];
                 var y = this.pY + moveT[a][1];
+                var col =this.col;
                 var bbb = false;
                 if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
                     var promise = new Promise(function (resolve, reject) {
@@ -416,6 +464,8 @@ class Queen {
                             if (x == x1 & y == y1) {
                                 counter = 1;
                                 bbb = true;
+                                if(col!=pieces[e].col)
+                                    forwardX1.push([x,y]);
                                 /*console.log('matched');*/
                             }
                         }
@@ -492,6 +542,7 @@ class Camel {
                 var counter = 0;
                 var x = this.pX + movesRF[a][0];
                 var y = this.pY + movesRF[a][1];
+                var col=this.col;
                 var bbb = false;
                 if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
                     var promise = new Promise(function (resolve, reject) {
@@ -501,6 +552,8 @@ class Camel {
                             if (x == x1 & y == y1) {
                                 counter = 1;
                                 bbb = true;
+                                if(col!=pieces[e].col)
+                                    forwardX1.push([x,y]);
                                /* console.log('matched');*/
                             }
                         }
@@ -521,6 +574,7 @@ class Camel {
                 var counter = 0;
                 var x = this.pX + movesLF[a][0];
                 var y = this.pY + movesLF[a][1];
+                var col =this.col;
                 var bbb = false;
                 if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
                     var promise = new Promise(function (resolve, reject) {
@@ -530,6 +584,8 @@ class Camel {
                             if (x == x1 & y == y1) {
                                 counter = 1;
                                 bbb = true;
+                                if(col!=pieces[e].col)
+                                    forwardX1.push([x,y]);
                                 /*console.log('matched');*/
                             }
                         }
@@ -550,6 +606,7 @@ class Camel {
                 var counter = 0;
                 var x = this.pX + movesLB[a][0];
                 var y = this.pY + movesLB[a][1];
+                var col =this.col;
                 var bbb = false;
                 if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
                     var promise = new Promise(function (resolve, reject) {
@@ -559,6 +616,8 @@ class Camel {
                             if (x == x1 & y == y1) {
                                 counter = 1;
                                 bbb = true;
+                                if(col!=pieces[e].col)
+                                    forwardX1.push([x,y]);
                                 /*console.log('matched');*/
                             }
                         }
@@ -578,6 +637,7 @@ class Camel {
                 var counter = 0;
                 var x = this.pX + movesRB[a][0];
                 var y = this.pY + movesRB[a][1];
+                var col =this.col;
                 var bbb = false;
                 if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
                     var promise = new Promise(function (resolve, reject) {
@@ -587,6 +647,8 @@ class Camel {
                             if (x == x1 & y == y1) {
                                 counter = 1;
                                 bbb = true;
+                                if(col!=pieces[e].col)
+                                    forwardX1.push([x,y]);
                                 /*console.log('matched');*/
                             }
                         }
@@ -645,6 +707,7 @@ class Horse {
                         var y1 = pieces[e].pY;
                         if (x == x1 & y == y1) {
                             counter = 1;
+                            
                             /*console.log('matched');*/
                         }
                     }
@@ -652,6 +715,16 @@ class Horse {
 
                 if (counter == 0) {
                     forwardX1.push([x, y]);
+                }
+            }
+        }
+        for(let c=0;c<moves.length;c++){
+            for(let d=0;d<pieces.length;d++){
+                if(this.pX+moves[c][0]==pieces[d].pX && this.pY+moves[c][1]==pieces[d].pY){
+                    if(this.col!=pieces[d].col){
+                        forwardX1
+                            .push([this.pX+moves[c][0], this.pY+moves[c][1]]);
+                    }
                 }
             }
         }
@@ -716,6 +789,7 @@ class Elephent {
                 var counter = 0;
                 var x = this.pX + moveR[a][0];
                 var y = this.pY + moveR[a][1];
+                var col =this.col;
                 var bbb = false;
                 if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
                     var promise = new Promise(function (resolve, reject) {
@@ -725,6 +799,8 @@ class Elephent {
                             if (x == x1 & y == y1) {
                                 counter = 1;
                                 bbb = true;
+                                if(col!=pieces[e].col)
+                                    forwardX1.push([x,y]);
                                 /*console.log('matched');*/
                             }
                         }
@@ -737,6 +813,14 @@ class Elephent {
                         forwardX1.push([x, y]);
                     }
                 } else {
+                    /*for(let d=0;d<pieces.length;d++){
+                if(this.pX+moveR[a][0]==pieces[d].pX && this.pY+moveR[a][1]==pieces[d].pY){
+                    if(this.col!=pieces[d].col){
+                    forwardX1.push([this.pX+moveR[a][0], this.pY+moveR[a][1]]);
+                        break loop1;
+                    }
+                }
+            }*/
                     break loop1;
                 }
             }
@@ -745,6 +829,7 @@ class Elephent {
                 var counter = 0;
                 var x = this.pX + moveL[a][0];
                 var y = this.pY + moveL[a][1];
+                var col =this.col;
                 var bbb = false;
                 if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
                     var promise = new Promise(function (resolve, reject) {
@@ -754,11 +839,21 @@ class Elephent {
                             if (x == x1 & y == y1) {
                                 counter = 1;
                                 bbb = true;
+                                if(col!=pieces[e].col)
+                                    forwardX1.push([x,y]);
                                /* console.log('matched');*/
                             }
                         }
                     });
                     if (bbb) {
+                        /*for(let d=0;d<pieces.length;d++){
+                if(this.pX+moveL[a][0]==pieces[d].pX && this.pY+moveL[a][1]==pieces[d].pY){
+                    if(this.col!=pieces[d].col){
+                    forwardX1.push([this.pX+moveL[a][0], this.pY+moveL[a][1]]);
+                        break loop2;
+                    }
+                }
+            }*/
                         break loop2;
                     }
 
@@ -774,6 +869,7 @@ class Elephent {
                 var counter = 0;
                 var x = this.pX + moveB[a][0];
                 var y = this.pY + moveB[a][1];
+                var col =this.col;
                 var bbb = false;
                 if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
                     var promise = new Promise(function (resolve, reject) {
@@ -783,11 +879,23 @@ class Elephent {
                             if (x == x1 & y == y1) {
                                 counter = 1;
                                 bbb = true;
+                                if(col!=pieces[e].col)
+                                    forwardX1.push([x,y]);
                                 /*console.log('matched');*/
                             }
                         }
                     });
                     if (bbb) {
+                        
+            /*for(let d=0;d<pieces.length;d++){
+                if(this.pX+moveB[a][0]==pieces[d].pX && this.pY+moveB[a][1]==pieces[d].pY){
+                    if(this.col!=pieces[d].col){
+                    forwardX1.push([this.pX+moveB[a][0], this.pY+moveB[a][1]]);
+                        break loop3;
+                    }
+                }
+            }*/
+        
                         break loop3;
                     }
                     if (counter == 0) {
@@ -802,6 +910,7 @@ class Elephent {
                 var counter = 0;
                 var x = this.pX + moveT[a][0];
                 var y = this.pY + moveT[a][1];
+                var col =this.col;
                 var bbb = false;
                 if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
                     var promise = new Promise(function (resolve, reject) {
@@ -811,11 +920,21 @@ class Elephent {
                             if (x == x1 & y == y1) {
                                 counter = 1;
                                 bbb = true;
+                                if(col!=pieces[e].col)
+                                    forwardX1.push([x,y]);
                                 /*console.log('matched');*/
                             }
                         }
                     });
                     if (bbb) {
+                    /*    for(let d=0;d<pieces.length;d++){
+                if(this.pX+moveT[a][0]==pieces[d].pX && this.pY+moveT[a][1]==pieces[d].pY){
+                    if(this.col!=pieces[d].col){
+                    forwardX1.push([this.pX+moveT[a][0], this.pY+moveT[a][1]]);
+                        break loop4;
+                    }
+                }
+            }*/
                         break loop4;
                     }
 
