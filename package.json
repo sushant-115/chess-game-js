@@ -11,5 +11,8 @@
     "url": "https://gitlab.com/mountblue/may-18-j3/sushant-chess-game-js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^5.0.3"
+  }
 }

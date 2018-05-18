@@ -129,11 +129,12 @@
           pieces.push(ele);
           piecesPositions.push([j, i]);
         }
-        if (i == 7 && j == 3) /*image(kingW ,posX+10 ,posY+10 , 50 ,50);*/ {
-          let ele = new King(kingW, j, i, 'W');
-          ele.color = 'K';
+        if (i == 7 && j == 3) /*image(queenW ,posX+10 ,posY+10 , 50 ,50);*/ {
+            let ele = new Queen(queenW, j, i, 'W');
+          ele.color = 'W';
           pieces.push(ele);
           piecesPositions.push([j, i]);
+          
         }
         if (i == 0 && j == 3) /* image(queenB ,posX+10 ,posY+10 , 50 ,50);*/ {
           let ele = new Queen(queenB, j, i, 'B');
@@ -141,9 +142,9 @@
           pieces.push(ele);
           piecesPositions.push([j, i]);
         }
-        if (i == 7 && j == 4) /* image(queenW ,posX+10 ,posY+10 , 50 ,50);*/ {
-          let ele = new Queen(queenW, j, i, 'W');
-          ele.color = 'W';
+        if (i == 7 && j == 4) /* image(kingW ,posX+10 ,posY+10 , 50 ,50);*/ {
+          let ele = new King(kingW, j, i, 'W');
+          ele.color = 'K';
           pieces.push(ele);
           piecesPositions.push([j, i]);
         }
