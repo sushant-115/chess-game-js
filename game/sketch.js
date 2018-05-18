@@ -19,6 +19,8 @@
   let PieceSelected = [];
   let newPieces;
   let firstChance;
+  let team;
+ let ref ;
 
 
   function preload() {
@@ -34,6 +36,7 @@
     kingW = loadImage('../whiteicons/king.jpg');
     queenW = loadImage('../whiteicons/queen.jpg');
     soldierW = loadImage('../whiteicons/soldier.jpg');
+      team = prompt('Enter your team','0 for white and 1 for black');
     firstChance = 0;
 
   }
@@ -41,6 +44,7 @@
   function setup() {
     createCanvas(602, 602);
     background(255);
+      ref = firebase.database().ref('players/');
     let posX = 0;
     let posY = 0;
     let lenX = width / 8;
@@ -166,7 +170,7 @@
   }
 
   function turnShow(pieces) {
-    if (turn == 0) {
+    if (team == 'w') {
       turnPredictor = [];
       for (let x = 0; x < pieces.length; x++) {
         if (pieces[x].col == 'W') {
@@ -177,7 +181,7 @@
         }
       }
     }
-    if (turn == 1) {
+    if (team == 'b') {
       turnPredictor = [];
       for (let x = 0; x < pieces.length; x++) {
         if (pieces[x].col == 'B') {
