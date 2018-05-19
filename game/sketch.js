@@ -136,27 +136,32 @@ let opponent ;
           piecesPositions.push([j, i]);
         }
         if (i == 0 && j == 4) /*image(kingB ,posX+10 ,posY+10 , 50 ,50);*/ {
-          let ele = new King(kingB, j, i, 'B');
-          ele.color = 'K';
-          pieces.push(ele);
-          piecesPositions.push([j, i]);
-        }
-        if (i == 7 && j == 3) /*image(queenW ,posX+10 ,posY+10 , 50 ,50);*/ {
-            let ele = new Queen(queenW, j, i, 'W');
-          ele.color = 'W';
-          pieces.push(ele);
-          piecesPositions.push([j, i]);
-          
-        }
-        if (i == 0 && j == 3) /* image(queenB ,posX+10 ,posY+10 , 50 ,50);*/ {
           let ele = new Queen(queenB, j, i, 'B');
           ele.color = 'B';
           pieces.push(ele);
           piecesPositions.push([j, i]);
         }
-        if (i == 7 && j == 4) /* image(kingW ,posX+10 ,posY+10 , 50 ,50);*/ {
-          let ele = new King(kingW, j, i, 'W');
+        if (i == 7 && j == 3) /*image(queenW ,posX+10 ,posY+10 , 50 ,50);*/ {
+           
+             let ele = new King(kingW, j, i, 'W');
           ele.color = 'K';
+          pieces.push(ele);
+          piecesPositions.push([j, i]);
+          
+        }
+        if (i == 0 && j == 3) /* image(queenB ,posX+10 ,posY+10 , 50 ,50);*/ {
+         
+            
+            let ele = new King(kingB, j, i, 'B');
+          ele.color = 'K';
+          pieces.push(ele);
+          piecesPositions.push([j, i]);
+            
+            
+        }
+        if (i == 7 && j == 4) /* image(kingW ,posX+10 ,posY+10 , 50 ,50);*/ {
+          let ele = new Queen(queenW, j, i, 'W');
+          ele.color = 'W';
           pieces.push(ele);
           piecesPositions.push([j, i]);
         }
@@ -186,22 +191,22 @@ let opponent ;
             prePiece = snapshot.val().move;
         });
         if(prePiece.delete>=0){
-            if(prePiece.counter >1){
+            turnPredictor=[];
           console.log('deleted in'+teamPlayer);
           pieces.splice(prePiece.delete,1);
           ref.set({
                           move : {
                               'preCol' : prePiece.preCol ,
                               'preRow' :prePiece.preRow ,
-                              'team' : teamPlayer,
+                              'team' : opponent,
                               'newRow' :prePiece.newRow,
                               'newCol' :prePiece.newCol,
-                              'delete' : prePiece.delete,
+                              'delete' : -1,
                               'counter' : prePiece.counter-1
                           }
                       });
           
-      }
+      
         }
         turnPredictor=[];
       for (let x = 0; x < pieces.length; x++) {
@@ -209,9 +214,9 @@ let opponent ;
           if(pieces[x].pX == prePiece.preCol && pieces[x].pY == prePiece.preRow){
               console.log('updated previous');
               console.log(prePiece.counter);
-              if(prePiece.delete){
+              /*if(prePiece.delete){
                   pieces[x-1].update(prePiece.newRow ,prePiece.newCol);
-              } else
+              } else*/
               pieces[x].update(prePiece.newCol ,prePiece.newRow);
               
             
@@ -231,24 +236,25 @@ let opponent ;
             prePiece = snapshot.val().move;
         });
         if(prePiece.delete>=0){
-            if(prePiece.counter>1){
+            
           console.log('deleted in'+teamPlayer);
                
           pieces.splice(prePiece.delete,1);
+            turnPredictor=[];
                 turnPredictor =[];
           ref.set({
                           move : {
                               'preCol' : prePiece.preCol ,
                               'preRow' :prePiece.preRow ,
-                              'team' : teamPlayer,
+                              'team' : opponent,
                               'newRow' :prePiece.newRow,
                               'newCol' :prePiece.newCol,
-                              'delete' : prePiece.delete,
+                              'delete' : -1,
                               'counter' : prePiece.counter-1
                           }
                       });
           
-      }
+      
         }
       
       for (let x = 0; x < pieces.length; x++) {
@@ -256,7 +262,9 @@ let opponent ;
           if(pieces[x].pX == prePiece.preCol && pieces[x].pY == prePiece.preRow){
                console.log('updated previous');
               
-            
+                if(prePiece.counter){
+                    pieces[x-1].update(prePiece.newCol ,prePiece.newRow);
+                }else
               pieces[x].update(prePiece.newCol ,prePiece.newRow);
               
           }

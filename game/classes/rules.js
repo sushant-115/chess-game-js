@@ -1036,7 +1036,7 @@ class HighLight {
         for (let q = 0; q < turnPredictor.length; q++) {
             stroke(244, 65, 83);
             strokeWeight(2);
-            noFill();
+            fill(244, 65, 83,30);
             rect(turnPredictor[q][0] * 75, turnPredictor[q][1] * 75, 75, 75);
         }
     }
