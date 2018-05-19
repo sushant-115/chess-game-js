@@ -26,7 +26,7 @@ let opponent ;
 
 
   function preload() {
-    horseB = loadImage('../blackicons/horse.jpg');
+    /*horseB = loadImage('../blackicons/horse.jpg');
     camelB = loadImage('../blackicons/camel.jpg');
     elephentB = loadImage('/blackicons/elephant.jpg');
     kingB = loadImage('../blackicons/king.jpg');
@@ -37,7 +37,7 @@ let opponent ;
     elephentW = loadImage('/whiteicons/elephant.jpg');
     kingW = loadImage('../whiteicons/king.jpg');
     queenW = loadImage('../whiteicons/queen.jpg');
-    soldierW = loadImage('../whiteicons/soldier.jpg');
+    soldierW = loadImage('../whiteicons/soldier.jpg');*/
       teamPlayer = prompt('Enter your team','w for white and b for black');
     firstChance = 0;
 
@@ -208,9 +208,12 @@ let opponent ;
          /* console.log(prePiece.preCol +'    '+pieces[x].pX);*/
           if(pieces[x].pX == prePiece.preCol && pieces[x].pY == prePiece.preRow){
               console.log('updated previous');
-             
-            
+              console.log(prePiece.counter);
+              if(prePiece.delete){
+                  pieces[x-1].update(prePiece.newRow ,prePiece.newCol);
+              } else
               pieces[x].update(prePiece.newCol ,prePiece.newRow);
+              
             
           }
           
@@ -230,7 +233,9 @@ let opponent ;
         if(prePiece.delete>=0){
             if(prePiece.counter>1){
           console.log('deleted in'+teamPlayer);
+               
           pieces.splice(prePiece.delete,1);
+                turnPredictor =[];
           ref.set({
                           move : {
                               'preCol' : prePiece.preCol ,
@@ -250,7 +255,10 @@ let opponent ;
          /* console.log(prePiece.preCol +'    '+pieces[x].pX);*/
           if(pieces[x].pX == prePiece.preCol && pieces[x].pY == prePiece.preRow){
                console.log('updated previous');
+              
+            
               pieces[x].update(prePiece.newCol ,prePiece.newRow);
+              
           }
         if (pieces[x].col == 'B') {
           let turnTarget = pieces[x].suggestion(pieces);

@@ -1030,6 +1030,7 @@ class HighLight {
     constructor(pX, pY) {
         this.pX = pX;
         this.pY = pY;
+       
     }
     turnShow(turnPredictor) {
         for (let q = 0; q < turnPredictor.length; q++) {
