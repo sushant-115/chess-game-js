@@ -6,7 +6,13 @@ class SoldierB {
         this.col = col;
     }
     show() {
-        image(this.img, (this.pX * 75) + 10, (this.pY * 75) + 10, 50, 50);
+        /*image(this.img, (this.pX * 75) + 10, (this.pY * 75) + 10, 50, 50);*/
+        push();
+        textSize(50);
+        fill(20,20,20);
+        let str =String.fromCharCode(9823);
+        text(str ,this.pX*75+13 ,this.pY*75+64 );
+        pop();
     }
     update(uX, uY) {
         this.pX = uX;
@@ -49,7 +55,13 @@ class SoldierW {
         this.col = col;
     }
     show() {
-        image(this.img, (this.pX * 75) + 10, (this.pY * 75) + 10, 50, 50);
+        /*image(this.img, (this.pX * 75) + 10, (this.pY * 75) + 10, 50, 50);*/
+        push();
+        textSize(50);
+        fill(200,200,200);
+        let str =String.fromCharCode(9823);
+        text(str ,this.pX*75+13 ,this.pY*75+64 );
+        pop();
     }
     update(uX, uY) {
         this.pX = uX;
@@ -89,7 +101,19 @@ class King {
         this.col = col;
     }
     show() {
-        image(this.img, (this.pX * 75) + 10, (this.pY * 75) + 10, 50, 50);
+        push();
+        textSize(50);
+        let str;
+        if(this.col==='W'){
+        fill(200,200,200,200);
+        str =String.fromCharCode(9812);
+        }else{
+            fill(20,20,20,200);
+            str =String.fromCharCode(9818);
+            
+        }
+        text(str ,this.pX*75+13 ,this.pY*75+64 );
+        pop();
     }
     update(uX, uY) {
         this.pX = uX;
@@ -145,7 +169,20 @@ class Queen {
         this.col = col;
     }
     show() {
-        image(this.img, (this.pX * 75) + 10, (this.pY * 75) + 10, 50, 50);
+        /*image(this.img, (this.pX * 75) + 10, (this.pY * 75) + 10, 50, 50);*/
+        push();
+        textSize(50);
+        let str;
+        if(this.col==='W'){
+        fill(200,200,200,200);
+        str =String.fromCharCode(9813);
+        }else{
+            fill(20,20,20,200);
+            str =String.fromCharCode(9819);
+            
+        }
+        text(str ,this.pX*75+13 ,this.pY*75+64 );
+        pop();
     }
     update(uX, uY) {
         this.pX = uX;
@@ -493,7 +530,20 @@ class Camel {
         this.col = col;
     }
     show() {
-        image(this.img, (this.pX * 75) + 10, (this.pY * 75) + 10, 50, 50);
+        /*image(this.img, (this.pX * 75) + 10, (this.pY * 75) + 10, 50, 50);*/
+        push();
+        textSize(50);
+        let str;
+        if(this.col==='W'){
+        fill(200,200,200,200);
+        str =String.fromCharCode(9815);
+        }else{
+            fill(20,20,20,200);
+            str =String.fromCharCode(9821);
+            
+        }
+        text(str ,this.pX*75+13 ,this.pY*75+64 );
+        pop();
     }
     update(uX, uY) {
         this.pX = uX;
@@ -678,7 +728,20 @@ class Horse {
         this.col = col;
     }
     show() {
-        image(this.img, (this.pX * 75) + 10, (this.pY * 75) + 10, 50, 50);
+       /* image(this.img, (this.pX * 75) + 10, (this.pY * 75) + 10, 50, 50);*/
+        push();
+        textSize(50);
+        let str;
+        if(this.col==='W'){
+        fill(200,200,200,200);
+        str =String.fromCharCode(9816);
+        }else{
+            fill(10,10,10,150);
+            str =String.fromCharCode(9822);
+            
+        }
+        text(str ,this.pX*75+13 ,this.pY*75+64 );
+        pop();
     }
     update(uX, uY) {
         this.pX = uX;
@@ -740,7 +803,20 @@ class Elephent {
         this.col = col;
     }
     show() {
-        image(this.img, (this.pX * 75) + 10, (this.pY * 75) + 10, 50, 50);
+        /*image(this.img, (this.pX * 75) + 10, (this.pY * 75) + 10, 50, 50);*/
+        push();
+        textSize(50);
+        let str;
+        if(this.col==='W'){
+        fill(200,200,200,200);
+        str =String.fromCharCode(9814);
+        }else{
+            fill(20,20,20,200);
+            str =String.fromCharCode(9820);
+            
+        }
+        text(str ,this.pX*75+13 ,this.pY*75+64 );
+        pop();
     }
     update(uX, uY) {
         this.pX = uX;
