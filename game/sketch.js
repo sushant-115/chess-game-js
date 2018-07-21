@@ -20,8 +20,8 @@
   let newPieces;
   let firstChance;
   let teamPlayer;
- let ref ;
-let opponent ;
+  let ref;
+  let opponent;
 
 
 
@@ -38,7 +38,7 @@ let opponent ;
     kingW = loadImage('../whiteicons/king.jpg');
     queenW = loadImage('../whiteicons/queen.jpg');
     soldierW = loadImage('../whiteicons/soldier.jpg');*/
-      teamPlayer = prompt('Enter your team','w for white and b for black');
+    teamPlayer = prompt('Enter your team', 'w for white and b for black');
     firstChance = 0;
 
   }
@@ -46,13 +46,13 @@ let opponent ;
   function setup() {
     createCanvas(602, 602);
     background(255);
-      ref = firebase.database().ref('players/');
-      ref.set({
-    move : {
-        team : 'b'
-    }
+    ref = firebase.database().ref('players/');
+    ref.set({
+      move: {
+        team: 'b'
+      }
 
-});
+    });
     let posX = 0;
     let posY = 0;
     let lenX = width / 8;
@@ -142,22 +142,22 @@ let opponent ;
           piecesPositions.push([j, i]);
         }
         if (i == 7 && j == 3) /*image(queenW ,posX+10 ,posY+10 , 50 ,50);*/ {
-           
-             let ele = new King(kingW, j, i, 'W');
+
+          let ele = new King(kingW, j, i, 'W');
           ele.color = 'K';
           pieces.push(ele);
           piecesPositions.push([j, i]);
-          
+
         }
         if (i == 0 && j == 3) /* image(queenB ,posX+10 ,posY+10 , 50 ,50);*/ {
-         
-            
-            let ele = new King(kingB, j, i, 'B');
+
+
+          let ele = new King(kingB, j, i, 'B');
           ele.color = 'K';
           pieces.push(ele);
           piecesPositions.push([j, i]);
-            
-            
+
+
         }
         if (i == 7 && j == 4) /* image(kingW ,posX+10 ,posY+10 , 50 ,50);*/ {
           let ele = new Queen(queenW, j, i, 'W');
@@ -183,45 +183,45 @@ let opponent ;
   }
 
   function turnShow(pieces) {
-      turnPredictor=[];
-      
-    if (teamPlayer == 'w' && opponent =='b') {
-        let prePiece ;
-      ref.on('value' ,function(snapshot){
-            prePiece = snapshot.val().move;
-        });
-        if(prePiece.delete>=0){
-            turnPredictor=[];
-          console.log('deleted in'+teamPlayer);
-          pieces.splice(prePiece.delete,1);
-          ref.set({
-                          move : {
-                              'preCol' : prePiece.preCol ,
-                              'preRow' :prePiece.preRow ,
-                              'team' : opponent,
-                              'newRow' :prePiece.newRow,
-                              'newCol' :prePiece.newCol,
-                              'delete' : -1,
-                              'counter' : prePiece.counter-1
-                          }
-                      });
-          
-      
-        }
-        turnPredictor=[];
-      for (let x = 0; x < pieces.length; x++) {
-         /* console.log(prePiece.preCol +'    '+pieces[x].pX);*/
-          if(pieces[x].pX == prePiece.preCol && pieces[x].pY == prePiece.preRow){
-              console.log('updated previous');
-              console.log(prePiece.counter);
-              /*if(prePiece.delete){
-                  pieces[x-1].update(prePiece.newRow ,prePiece.newCol);
-              } else*/
-              pieces[x].update(prePiece.newCol ,prePiece.newRow);
-              
-            
+    turnPredictor = [];
+
+    if (teamPlayer == 'w' && opponent == 'b') {
+      let prePiece;
+      ref.on('value', function (snapshot) {
+        prePiece = snapshot.val().move;
+      });
+      if (prePiece.delete >= 0) {
+        turnPredictor = [];
+        console.log('deleted in' + teamPlayer);
+        pieces.splice(prePiece.delete, 1);
+        ref.set({
+          move: {
+            'preCol': prePiece.preCol,
+            'preRow': prePiece.preRow,
+            'team': opponent,
+            'newRow': prePiece.newRow,
+            'newCol': prePiece.newCol,
+            'delete': -1,
+            'counter': prePiece.counter - 1
           }
-          
+        });
+
+
+      }
+      turnPredictor = [];
+      for (let x = 0; x < pieces.length; x++) {
+        /* console.log(prePiece.preCol +'    '+pieces[x].pX);*/
+        if (pieces[x].pX == prePiece.preCol && pieces[x].pY == prePiece.preRow) {
+          console.log('updated previous');
+          console.log(prePiece.counter);
+          /*if(prePiece.delete){
+              pieces[x-1].update(prePiece.newRow ,prePiece.newCol);
+          } else*/
+          pieces[x].update(prePiece.newCol, prePiece.newRow);
+
+
+        }
+
         if (pieces[x].col == 'W') {
           let turnTarget = pieces[x].suggestion(pieces);
           if (turnTarget.length > 0) {
@@ -231,43 +231,43 @@ let opponent ;
       }
     }
     if (teamPlayer == 'b' && opponent == 'w') {
-         let prePiece ;
-      ref.on('value' ,function(snapshot){
-            prePiece = snapshot.val().move;
-        });
-        if(prePiece.delete>=0){
-            
-          console.log('deleted in'+teamPlayer);
-               
-          pieces.splice(prePiece.delete,1);
-            turnPredictor=[];
-                turnPredictor =[];
-          ref.set({
-                          move : {
-                              'preCol' : prePiece.preCol ,
-                              'preRow' :prePiece.preRow ,
-                              'team' : opponent,
-                              'newRow' :prePiece.newRow,
-                              'newCol' :prePiece.newCol,
-                              'delete' : -1,
-                              'counter' : prePiece.counter-1
-                          }
-                      });
-          
-      
-        }
-      
-      for (let x = 0; x < pieces.length; x++) {
-         /* console.log(prePiece.preCol +'    '+pieces[x].pX);*/
-          if(pieces[x].pX == prePiece.preCol && pieces[x].pY == prePiece.preRow){
-               console.log('updated previous');
-              
-                if(prePiece.counter){
-                    pieces[x-1].update(prePiece.newCol ,prePiece.newRow);
-                }else
-              pieces[x].update(prePiece.newCol ,prePiece.newRow);
-              
+      let prePiece;
+      ref.on('value', function (snapshot) {
+        prePiece = snapshot.val().move;
+      });
+      if (prePiece.delete >= 0) {
+
+        console.log('deleted in' + teamPlayer);
+
+        pieces.splice(prePiece.delete, 1);
+        turnPredictor = [];
+        turnPredictor = [];
+        ref.set({
+          move: {
+            'preCol': prePiece.preCol,
+            'preRow': prePiece.preRow,
+            'team': opponent,
+            'newRow': prePiece.newRow,
+            'newCol': prePiece.newCol,
+            'delete': -1,
+            'counter': prePiece.counter - 1
           }
+        });
+
+
+      }
+
+      for (let x = 0; x < pieces.length; x++) {
+        /* console.log(prePiece.preCol +'    '+pieces[x].pX);*/
+        if (pieces[x].pX == prePiece.preCol && pieces[x].pY == prePiece.preRow) {
+          console.log('updated previous');
+
+          if (prePiece.counter) {
+            pieces[x - 1].update(prePiece.newCol, prePiece.newRow);
+          } else
+            pieces[x].update(prePiece.newCol, prePiece.newRow);
+
+        }
         if (pieces[x].col == 'B') {
           let turnTarget = pieces[x].suggestion(pieces);
           if (turnTarget.length > 0) {
@@ -307,16 +307,16 @@ let opponent ;
                   }
                   pieces.splice(y, 1);
                   console.log('deleted  ' + y);
-                    
+
                   pieces[i].update(pX, pY);
                   console.log(length + '  ' + pieces.length);
                 }
               }
 
-              if (length == pieces.length){
-                
-              
-              pieces[i].update(pX, pY);
+              if (length == pieces.length) {
+
+
+                pieces[i].update(pX, pY);
               }
               /* console.log(pieces[i].pX + '   ' + piecesPositions[i][0])*/
               piecesPositions[i][0] = pX;
@@ -325,8 +325,8 @@ let opponent ;
               target = [];
               if (turn == 0) turn = 1;
               else turn = 0;
-                 
-  
+
+
               return;
             }
           }
@@ -337,16 +337,16 @@ let opponent ;
               if (turnPredictor.includes([pX, pY]))
                 target = pieces[i].suggestion(pieces);
 
-//                 ref.set({
-//                          move : {
-//                              'preCol' : pieces[i].pX ,
-//                              'preRow' :pieces[i].pY ,
-//                              'team' : team,
-//                              'newRow' : pX,
-//                              'newCol' :pY
-//                          }
-//                      });
-  
+              //                 ref.set({
+              //                          move : {
+              //                              'preCol' : pieces[i].pX ,
+              //                              'preRow' :pieces[i].pY ,
+              //                              'team' : team,
+              //                              'newRow' : pX,
+              //                              'newCol' :pY
+              //                          }
+              //                      });
+
               return;
             }
           }
@@ -371,133 +371,132 @@ let opponent ;
                         if (pieces[y].col = 'B') alert('White won');
                         else alert('Black won');
                       }
-                        let delEl ;
-                        ref.on('value' , function(snapshot){
-                            delEl = snapshot.val().move;
-                        });
-                        ref.set({
-                          move : {
-                              'preCol' : delEl.preCol ,
-                              'preRow' :delEl.preRow,
-                              'team' : teamPlayer,
-                              'newRow' : delEl.newRow,
-                              'newCol' : delEl.newCol,
-                              'delete' : y,
-                              counter : 2
-                          }
+                      let delEl;
+                      ref.on('value', function (snapshot) {
+                        delEl = snapshot.val().move;
+                      });
+                      ref.set({
+                        move: {
+                          'preCol': delEl.preCol,
+                          'preRow': delEl.preRow,
+                          'team': teamPlayer,
+                          'newRow': delEl.newRow,
+                          'newCol': delEl.newCol,
+                          'delete': y,
+                          counter: 2
+                        }
                       });
                       pieces.splice(y, 1);
                     }
                     console.log('deleted  ' + y);
-                      
-                    if (pieces[i].col == 'B'){
-                         if(teamPlayer =='w'){
-                             ref.set({
-                          move : {
-                              'preCol' : pieces[i].pX ,
-                              'preRow' :pieces[i].pY ,
-                              'team' : teamPlayer,
-                              'newRow' : pY,
-                              'newCol' :pX,
-                              'delete' : y,
-                              counter : 2
+
+                    if (pieces[i].col == 'B') {
+                      if (teamPlayer == 'w') {
+                        ref.set({
+                          move: {
+                            'preCol': pieces[i].pX,
+                            'preRow': pieces[i].pY,
+                            'team': teamPlayer,
+                            'newRow': pY,
+                            'newCol': pX,
+                            'delete': y,
+                            counter: 2
                           }
-                      });
-            turnPredictor=[];
-                         }else{
-                             ref.set({
-                          move : {
-                              'preCol' : pieces[i].pX ,
-                              'preRow' :pieces[i].pY ,
-                              'team' : teamPlayer,
-                              'newRow' : pY,
-                              'newCol' :pX,
-                              'delete' : y,
-                              counter : 2
+                        });
+                        turnPredictor = [];
+                      } else {
+                        ref.set({
+                          move: {
+                            'preCol': pieces[i].pX,
+                            'preRow': pieces[i].pY,
+                            'team': teamPlayer,
+                            'newRow': pY,
+                            'newCol': pX,
+                            'delete': y,
+                            counter: 2
                           }
-                      });
-                turnPredictor=[];
-                         }
-                        
+                        });
+                        turnPredictor = [];
+                      }
+
                       pieces[i].update(pX, pY);
-                        
-                    }
-                    else {
-                         if(teamPlayer =='w'){
-                             ref.set({
-                          move : {
-                              'preCol' : pieces[i].pX ,
-                              'preRow' :pieces[i].pY ,
-                              'team' : teamPlayer,
-                              'newRow' : pY,
-                              'newCol' :pX,
-                              'delete' : y,
-                              counter : 2
+
+                    } else {
+                      if (teamPlayer == 'w') {
+                        ref.set({
+                          move: {
+                            'preCol': pieces[i].pX,
+                            'preRow': pieces[i].pY,
+                            'team': teamPlayer,
+                            'newRow': pY,
+                            'newCol': pX,
+                            'delete': y,
+                            counter: 2
                           }
-                      });
-      turnPredictor=[];
-                         }else{
-                             ref.set({
-                          move : {
-                              'preCol' : pieces[i].pX ,
-                              'preRow' :pieces[i].pY ,
-                              'team' : team,
-                              'newRow' : pY,
-                              'newCol' :pX,
-                              'delete' : y,
-                              counter : 2
+                        });
+                        turnPredictor = [];
+                      } else {
+                        ref.set({
+                          move: {
+                            'preCol': pieces[i].pX,
+                            'preRow': pieces[i].pY,
+                            'team': team,
+                            'newRow': pY,
+                            'newCol': pX,
+                            'delete': y,
+                            counter: 2
                           }
-                      });
-      turnPredictor=[];
-                         }
-                        pieces[i - 1].update(pX, pY);
-                    
+                        });
+                        turnPredictor = [];
+                      }
+                      pieces[i - 1].update(pX, pY);
+
                     }
 
                     console.log(length + '  ' + pieces.length);
                     break;
                   }
                 }
-                if (length == pieces.length){
-                     if(teamPlayer =='w'){
-                             ref.set({
-                          move : {
-                              'preCol' : pieces[i].pX ,
-                              'preRow' :pieces[i].pY ,
-                              'team' : teamPlayer,
-                              'newRow' : pY,
-                              'newCol' :pX,
-                              
-                          }
-                      });
-            turnPredictor=[];
-                         }else{
-                             ref.set({
-                          move : {
-                              'preCol' : pieces[i].pX ,
-                              'preRow' :pieces[i].pY ,
-                              'team' : teamPlayer,
-                              'newRow' : pY,
-                              'newCol' :pX,
-                              
-                              
-                          }
-                      });
-   turnPredictor=[];
-                         }
+                if (length == pieces.length) {
+                  if (teamPlayer == 'w') {
+                    ref.set({
+                      move: {
+                        'preCol': pieces[i].pX,
+                        'preRow': pieces[i].pY,
+                        'team': teamPlayer,
+                        'newRow': pY,
+                        'newCol': pX,
+
+                      }
+                    });
+                    turnPredictor = [];
+                  } else {
+                    ref.set({
+                      move: {
+                        'preCol': pieces[i].pX,
+                        'preRow': pieces[i].pY,
+                        'team': teamPlayer,
+                        'newRow': pY,
+                        'newCol': pX,
+
+
+                      }
+                    });
+                    turnPredictor = [];
+                  }
                   pieces[i].update(pX, pY);
-                piecesPositions[i][0] = pX;
-                piecesPositions[i][1] = pY;
-               console.log('here is the bug');
-                    
-                    
+                  piecesPositions[i][0] = pX;
+                  piecesPositions[i][1] = pY;
+                  console.log('here is the bug');
+
+
                 }
-    
-                    target = [];
+
+                target = [];
                 if (turn == 0) turn = 1;
                 else turn = 0;
-                   
-   
+
+
                 return;
               }
             }
@@ -512,9 +511,9 @@ let opponent ;
               target = pieces[i].suggestion(pieces);
 
           }
-  
 
-           
+
+
           return;
         }
       }
@@ -531,7 +530,7 @@ let opponent ;
          return;
        }
      }*/
-     
+
   }
 
   function grid() {
@@ -592,15 +591,15 @@ let opponent ;
         strokeWeight(3);
         if (i % 2 == 0) {
           if (j % 2 == 0) {
-            fill(111, 168, 55 ,200);
+            fill(111, 168, 55, 200);
           } else {
-            fill(229, 224, 160 ,199);
+            fill(229, 224, 160, 199);
           }
         } else {
           if (j % 2 == 0) {
-            fill(229, 224, 160 ,199);
+            fill(229, 224, 160, 199);
           } else {
-            fill(111, 168, 55 ,200);
+            fill(111, 168, 55, 200);
           }
         }
 
@@ -614,10 +613,10 @@ let opponent ;
     for (let i = 0; i < pieces.length; i++) {
       pieces[i].show();
     }
-      ref.on('value' , function(snapshot){
-       opponent = snapshot.val().move.team;    
-      });
-      turnShow(pieces);
+    ref.on('value', function (snapshot) {
+      opponent = snapshot.val().move.team;
+    });
+    turnShow(pieces);
     if (turnPredictor)
       highL.turnShow(turnPredictor);
     if (PieceSelected) {
