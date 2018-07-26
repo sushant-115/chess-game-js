@@ -19,14 +19,12 @@ class SoldierB {
     this.pY = uY;
   }
   suggestion(pieces) {
-    /* console.log('inside suggestion');*/
     let moves = [
       [-1, 1],
       /* [0, 1],*/
       [1, 1]
     ];
     let forwardX = [];
-    /*forwardX.push([this.pX,this.py+1]);*/
     for (let c = 0; c < moves.length; c++) {
       for (let d = 0; d < pieces.length; d++) {
         if (this.pX + moves[c][0] == pieces[d].pX && this.pY + moves[c][1] == pieces[d].pY) {
@@ -146,7 +144,6 @@ class King {
               counter = 1;
               if (col != pieces[e].col)
                 forwardX1.push([x, y]);
-              /*console.log('matched');*/
             }
           }
         });
@@ -169,7 +166,6 @@ class Queen {
     this.col = col;
   }
   show() {
-    /*image(this.img, (this.pX * 75) + 10, (this.pY * 75) + 10, 50, 50);*/
     push();
     textSize(50);
     let str;
@@ -280,7 +276,6 @@ class Queen {
                 bbb = true;
                 if (col != pieces[e].col)
                   forwardX1.push([x, y]);
-                /*console.log('matched');*/
               }
             }
           });
@@ -312,7 +307,6 @@ class Queen {
                 bbb = true;
                 if (col != pieces[e].col)
                   forwardX1.push([x, y]);
-                /*console.log('matched');*/
               }
             }
           });
@@ -344,7 +338,6 @@ class Queen {
                 bbb = true;
                 if (col != pieces[e].col)
                   forwardX1.push([x, y]);
-                /* console.log('matched');*/
               }
             }
           });
@@ -375,7 +368,6 @@ class Queen {
                 bbb = true;
                 if (col != pieces[e].col)
                   forwardX1.push([x, y]);
-                /*console.log('matched');*/
               }
             }
           });
@@ -408,7 +400,6 @@ class Queen {
                 bbb = true;
                 if (col != pieces[e].col)
                   forwardX1.push([x, y]);
-                /* console.log('matched');*/
               }
             }
           });
@@ -440,7 +431,6 @@ class Queen {
                 bbb = true;
                 if (col != pieces[e].col)
                   forwardX1.push([x, y]);
-                /*console.log('matched');*/
               }
             }
           });
@@ -472,7 +462,6 @@ class Queen {
                 bbb = true;
                 if (col != pieces[e].col)
                   forwardX1.push([x, y]);
-                /*console.log('matched');*/
               }
             }
           });
@@ -503,7 +492,6 @@ class Queen {
                 bbb = true;
                 if (col != pieces[e].col)
                   forwardX1.push([x, y]);
-                /*console.log('matched');*/
               }
             }
           });
@@ -604,7 +592,6 @@ class Camel {
                 bbb = true;
                 if (col != pieces[e].col)
                   forwardX1.push([x, y]);
-                /* console.log('matched');*/
               }
             }
           });
@@ -636,7 +623,6 @@ class Camel {
                 bbb = true;
                 if (col != pieces[e].col)
                   forwardX1.push([x, y]);
-                /*console.log('matched');*/
               }
             }
           });
@@ -668,7 +654,6 @@ class Camel {
                 bbb = true;
                 if (col != pieces[e].col)
                   forwardX1.push([x, y]);
-                /*console.log('matched');*/
               }
             }
           });
@@ -699,7 +684,6 @@ class Camel {
                 bbb = true;
                 if (col != pieces[e].col)
                   forwardX1.push([x, y]);
-                /*console.log('matched');*/
               }
             }
           });
@@ -771,7 +755,6 @@ class Horse {
             if (x == x1 & y == y1) {
               counter = 1;
 
-              /*console.log('matched');*/
             }
           }
         });
@@ -877,7 +860,6 @@ class Elephent {
                 bbb = true;
                 if (col != pieces[e].col)
                   forwardX1.push([x, y]);
-                /*console.log('matched');*/
               }
             }
           });
@@ -889,14 +871,6 @@ class Elephent {
             forwardX1.push([x, y]);
           }
         } else {
-          /*for(let d=0;d<pieces.length;d++){
-                if(this.pX+moveR[a][0]==pieces[d].pX && this.pY+moveR[a][1]==pieces[d].pY){
-                    if(this.col!=pieces[d].col){
-                    forwardX1.push([this.pX+moveR[a][0], this.pY+moveR[a][1]]);
-                        break loop1;
-                    }
-                }
-            }*/
           break loop1;
         }
       }
@@ -917,19 +891,10 @@ class Elephent {
                 bbb = true;
                 if (col != pieces[e].col)
                   forwardX1.push([x, y]);
-                /* console.log('matched');*/
               }
             }
           });
           if (bbb) {
-            /*for(let d=0;d<pieces.length;d++){
-                if(this.pX+moveL[a][0]==pieces[d].pX && this.pY+moveL[a][1]==pieces[d].pY){
-                    if(this.col!=pieces[d].col){
-                    forwardX1.push([this.pX+moveL[a][0], this.pY+moveL[a][1]]);
-                        break loop2;
-                    }
-                }
-            }*/
             break loop2;
           }
 
@@ -957,21 +922,12 @@ class Elephent {
                 bbb = true;
                 if (col != pieces[e].col)
                   forwardX1.push([x, y]);
-                /*console.log('matched');*/
               }
             }
           });
           if (bbb) {
 
-            /*for(let d=0;d<pieces.length;d++){
-                if(this.pX+moveB[a][0]==pieces[d].pX && this.pY+moveB[a][1]==pieces[d].pY){
-                    if(this.col!=pieces[d].col){
-                    forwardX1.push([this.pX+moveB[a][0], this.pY+moveB[a][1]]);
-                        break loop3;
-                    }
-                }
-            }*/
-
+   
             break loop3;
           }
           if (counter == 0) {
@@ -998,19 +954,10 @@ class Elephent {
                 bbb = true;
                 if (col != pieces[e].col)
                   forwardX1.push([x, y]);
-                /*console.log('matched');*/
               }
             }
           });
           if (bbb) {
-            /*    for(let d=0;d<pieces.length;d++){
-                if(this.pX+moveT[a][0]==pieces[d].pX && this.pY+moveT[a][1]==pieces[d].pY){
-                    if(this.col!=pieces[d].col){
-                    forwardX1.push([this.pX+moveT[a][0], this.pY+moveT[a][1]]);
-                        break loop4;
-                    }
-                }
-            }*/
             break loop4;
           }
 

@@ -192,7 +192,6 @@
       });
       if (prePiece.delete >= 0) {
         turnPredictor = [];
-        console.log('deleted in' + teamPlayer);
         pieces.splice(prePiece.delete, 1);
         ref.set({
           move: {
@@ -210,10 +209,7 @@
       }
       turnPredictor = [];
       for (let x = 0; x < pieces.length; x++) {
-        /* console.log(prePiece.preCol +'    '+pieces[x].pX);*/
         if (pieces[x].pX == prePiece.preCol && pieces[x].pY == prePiece.preRow) {
-          console.log('updated previous');
-          console.log(prePiece.counter);
           /*if(prePiece.delete){
               pieces[x-1].update(prePiece.newRow ,prePiece.newCol);
           } else*/
@@ -236,9 +232,6 @@
         prePiece = snapshot.val().move;
       });
       if (prePiece.delete >= 0) {
-
-        console.log('deleted in' + teamPlayer);
-
         pieces.splice(prePiece.delete, 1);
         turnPredictor = [];
         turnPredictor = [];
@@ -253,15 +246,9 @@
             'counter': prePiece.counter - 1
           }
         });
-
-
       }
-
       for (let x = 0; x < pieces.length; x++) {
-        /* console.log(prePiece.preCol +'    '+pieces[x].pX);*/
         if (pieces[x].pX == prePiece.preCol && pieces[x].pY == prePiece.preRow) {
-          console.log('updated previous');
-
           if (prePiece.counter) {
             pieces[x - 1].update(prePiece.newCol, prePiece.newRow);
           } else
@@ -282,7 +269,6 @@
     newPieces = pieces.slice();
     let pX = Math.floor(mouseX / 75);
     let pY = Math.floor(mouseY / 75);
-    /*console.log(pX + '  ' + pY);*/
     if (turnPredictor) {
       if (turnPredictor.includes([pX, pY])) {
         PieceSelected.push(pX, pY);
@@ -293,11 +279,8 @@
         if (pX == target[0] && pY == target[1]) {
           let length = newPieces.length;
           for (let i = 0; i < pieces.length; i++) {
-            /*console.log(pieces[i].pX+'  '+i+'  '+pieces[i].pY);*/
             if (pieces[i].pX == highL.pX && pieces[i].pY == highL.pY) {
               highL.update(pX, pY);
-              /*console.log('on orange');
-              console.log('this is' + pieces[i].pX + '   ' + piecesPositions[i][0])*/
               for (let y = 0; y < pieces.length; y++) {
                 if (pieces[y].pX == pX && pieces[y].pY == pY) {
                   if (pieces[y].color == 'K') {
@@ -306,10 +289,7 @@
                     else alert('Black won');
                   }
                   pieces.splice(y, 1);
-                  console.log('deleted  ' + y);
-
                   pieces[i].update(pX, pY);
-                  console.log(length + '  ' + pieces.length);
                 }
               }
 
@@ -318,7 +298,6 @@
 
                 pieces[i].update(pX, pY);
               }
-              /* console.log(pieces[i].pX + '   ' + piecesPositions[i][0])*/
               piecesPositions[i][0] = pX;
               piecesPositions[i][1] = pY;
 
@@ -331,23 +310,11 @@
             }
           }
           for (let i = 0; i < pieces.length; i++) {
-            /*console.log(pieces[i].pX+'  '+i+'  '+pieces[i].pY);*/
             if (pieces[i].pX == pX && pieces[i].pY == pY) {
               highL.update(pX, pY);
               if (turnPredictor.includes([pX, pY]))
                 target = pieces[i].suggestion(pieces);
-
-              //                 ref.set({
-              //                          move : {
-              //                              'preCol' : pieces[i].pX ,
-              //                              'preRow' :pieces[i].pY ,
-              //                              'team' : team,
-              //                              'newRow' : pX,
-              //                              'newCol' :pY
-              //                          }
-              //                      });
-
-              return;
+               return;
             }
           }
         }
@@ -359,10 +326,8 @@
             let length = newPieces.length;
 
             for (let i = 0; i < pieces.length; i++) {
-              /*console.log(pieces[i].pX+'  '+i+'  '+pieces[i].pY);*/
               if (pieces[i].pX == highL.pX && pieces[i].pY == highL.pY) {
                 highL.update(pX, pY);
-                /* console.log('on orange');*/
                 for (let y = 0; y < pieces.length; y++) {
                   if (pieces[y].pX == pX && pieces[y].pY == pY) {
                     if (pieces[i].col != pieces[y].col) {
@@ -388,8 +353,6 @@
                       });
                       pieces.splice(y, 1);
                     }
-                    console.log('deleted  ' + y);
-
                     if (pieces[i].col == 'B') {
                       if (teamPlayer == 'w') {
                         ref.set({
@@ -453,7 +416,6 @@
 
                     }
 
-                    console.log(length + '  ' + pieces.length);
                     break;
                   }
                 }
@@ -487,9 +449,7 @@
                   pieces[i].update(pX, pY);
                   piecesPositions[i][0] = pX;
                   piecesPositions[i][1] = pY;
-                  console.log('here is the bug');
-
-
+                 
                 }
 
                 target = [];
@@ -503,7 +463,6 @@
           }
         }
       for (let i = 0; i < pieces.length; i++) {
-        /*console.log(pieces[i].pX+'  '+i+'  '+pieces[i].pY);*/
         if (pieces[i].pX == pX && pieces[i].pY == pY) {
           highL.update(pX, pY);
           for (let r = 0; r < turnPredictor.length; r++) {
@@ -519,18 +478,7 @@
       }
     }
 
-    /* console.log(pY+' '+pX);
-     for(let i=0;i<pieces.length;i++){
-       /*console.log(pieces[i].pX+'  '+i+'  '+pieces[i].pY);
-       if(pieces[i].pX==pX &&pieces[i].pY ==pY){
-         highL.update(pX ,pY);
-         target =pieces[i].suggestion(pieces);
-         
-         
-         return;
-       }
-     }*/
-
+   
   }
 
   function grid() {
@@ -565,21 +513,6 @@
   }
 
 
-  /*function highlight(pX ,pY){
-    if(k){
-      stroke(0);
-       strokeWeight(3);
-       noFill();
-      rect(previousHighLight[0] ,previousHighLight[1] ,75 ,75);
-    }
-    stroke(83, 244, 66);
-  strokeWeight(3);
-  noFill();
-    rect(pX*75,pY*75,75,75);
-    previousHighLight[0]=pX;
-    previousHighLight[1]=pY;
-    k=true;
-  }*/
   function draw() {
     let posX = 0;
     let posY = 0;
