@@ -260,252 +260,252 @@ class Queen {
 
     let forwardX1 = [];
     loop1:
-      for (let a = 0; a < movesRF.length; a++) {
-        var counter = 0;
-        var x = this.pX + movesRF[a][0];
-        var y = this.pY + movesRF[a][1];
-        var col = this.col;
-        var bbb = false;
-        if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-          var promise = new Promise(function (resolve, reject) {
-            for (let e = 0; e < pieces.length; e++) {
-              var x1 = pieces[e].pX;
-              var y1 = pieces[e].pY;
-              if (x == x1 & y == y1) {
-                counter = 1;
-                bbb = true;
-                if (col != pieces[e].col)
-                  forwardX1.push([x, y]);
-              }
+    for (let a = 0; a < movesRF.length; a++) {
+      var counter = 0;
+      var x = this.pX + movesRF[a][0];
+      var y = this.pY + movesRF[a][1];
+      var col = this.col;
+      var bbb = false;
+      if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+        var promise = new Promise(function (resolve, reject) {
+          for (let e = 0; e < pieces.length; e++) {
+            var x1 = pieces[e].pX;
+            var y1 = pieces[e].pY;
+            if (x == x1 & y == y1) {
+              counter = 1;
+              bbb = true;
+              if (col != pieces[e].col)
+                forwardX1.push([x, y]);
             }
-          });
-          if (bbb) {
-            break loop1;
           }
-
-          if (counter == 0) {
-            forwardX1.push([x, y]);
-          }
-        } else {
+        });
+        if (bbb) {
           break loop1;
         }
-      }
-    loop2:
-      for (let a = 0; a < movesLF.length; a++) {
-        var counter = 0;
-        var x = this.pX + movesLF[a][0];
-        var y = this.pY + movesLF[a][1];
-        var col = this.col;
-        var bbb = false;
-        if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-          var promise = new Promise(function (resolve, reject) {
-            for (let e = 0; e < pieces.length; e++) {
-              var x1 = pieces[e].pX;
-              var y1 = pieces[e].pY;
-              if (x == x1 & y == y1) {
-                counter = 1;
-                bbb = true;
-                if (col != pieces[e].col)
-                  forwardX1.push([x, y]);
-              }
-            }
-          });
-          if (bbb) {
-            break loop2;
-          }
 
-          if (counter == 0) {
-            forwardX1.push([x, y]);
+        if (counter == 0) {
+          forwardX1.push([x, y]);
+        }
+      } else {
+        break loop1;
+      }
+    }
+    loop2:
+    for (let a = 0; a < movesLF.length; a++) {
+      var counter = 0;
+      var x = this.pX + movesLF[a][0];
+      var y = this.pY + movesLF[a][1];
+      var col = this.col;
+      var bbb = false;
+      if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+        var promise = new Promise(function (resolve, reject) {
+          for (let e = 0; e < pieces.length; e++) {
+            var x1 = pieces[e].pX;
+            var y1 = pieces[e].pY;
+            if (x == x1 & y == y1) {
+              counter = 1;
+              bbb = true;
+              if (col != pieces[e].col)
+                forwardX1.push([x, y]);
+            }
           }
-        } else {
+        });
+        if (bbb) {
           break loop2;
         }
+
+        if (counter == 0) {
+          forwardX1.push([x, y]);
+        }
+      } else {
+        break loop2;
       }
+    }
     loop3:
-      for (let a = 0; a < movesLB.length; a++) {
-        var counter = 0;
-        var x = this.pX + movesLB[a][0];
-        var y = this.pY + movesLB[a][1];
-        var col = this.col;
-        var bbb = false;
-        if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-          var promise = new Promise(function (resolve, reject) {
-            for (let e = 0; e < pieces.length; e++) {
-              var x1 = pieces[e].pX;
-              var y1 = pieces[e].pY;
-              if (x == x1 & y == y1) {
-                counter = 1;
-                bbb = true;
-                if (col != pieces[e].col)
-                  forwardX1.push([x, y]);
-              }
+    for (let a = 0; a < movesLB.length; a++) {
+      var counter = 0;
+      var x = this.pX + movesLB[a][0];
+      var y = this.pY + movesLB[a][1];
+      var col = this.col;
+      var bbb = false;
+      if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+        var promise = new Promise(function (resolve, reject) {
+          for (let e = 0; e < pieces.length; e++) {
+            var x1 = pieces[e].pX;
+            var y1 = pieces[e].pY;
+            if (x == x1 & y == y1) {
+              counter = 1;
+              bbb = true;
+              if (col != pieces[e].col)
+                forwardX1.push([x, y]);
             }
-          });
-          if (bbb) {
-            break loop3;
           }
-          if (counter == 0) {
-            forwardX1.push([x, y]);
-          }
-        } else {
+        });
+        if (bbb) {
           break loop3;
         }
+        if (counter == 0) {
+          forwardX1.push([x, y]);
+        }
+      } else {
+        break loop3;
       }
+    }
     loop4:
-      for (let a = 0; a < movesRB.length; a++) {
-        var counter = 0;
-        var x = this.pX + movesRB[a][0];
-        var y = this.pY + movesRB[a][1];
-        var col = this.col;
-        var bbb = false;
-        if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-          var promise = new Promise(function (resolve, reject) {
-            for (let e = 0; e < pieces.length; e++) {
-              var x1 = pieces[e].pX;
-              var y1 = pieces[e].pY;
-              if (x == x1 & y == y1) {
-                counter = 1;
-                bbb = true;
-                if (col != pieces[e].col)
-                  forwardX1.push([x, y]);
-              }
+    for (let a = 0; a < movesRB.length; a++) {
+      var counter = 0;
+      var x = this.pX + movesRB[a][0];
+      var y = this.pY + movesRB[a][1];
+      var col = this.col;
+      var bbb = false;
+      if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+        var promise = new Promise(function (resolve, reject) {
+          for (let e = 0; e < pieces.length; e++) {
+            var x1 = pieces[e].pX;
+            var y1 = pieces[e].pY;
+            if (x == x1 & y == y1) {
+              counter = 1;
+              bbb = true;
+              if (col != pieces[e].col)
+                forwardX1.push([x, y]);
             }
-          });
-          if (bbb) {
-            break loop4;
           }
-
-          if (counter == 0) {
-            forwardX1.push([x, y]);
-          }
-        } else {
+        });
+        if (bbb) {
           break loop4;
         }
+
+        if (counter == 0) {
+          forwardX1.push([x, y]);
+        }
+      } else {
+        break loop4;
       }
+    }
 
     loop5:
-      for (let a = 0; a < moveR.length; a++) {
-        var counter = 0;
-        var x = this.pX + moveR[a][0];
-        var y = this.pY + moveR[a][1];
-        var col = this.col;
-        var bbb = false;
-        if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-          var promise = new Promise(function (resolve, reject) {
-            for (let e = 0; e < pieces.length; e++) {
-              var x1 = pieces[e].pX;
-              var y1 = pieces[e].pY;
-              if (x == x1 & y == y1) {
-                counter = 1;
-                bbb = true;
-                if (col != pieces[e].col)
-                  forwardX1.push([x, y]);
-              }
+    for (let a = 0; a < moveR.length; a++) {
+      var counter = 0;
+      var x = this.pX + moveR[a][0];
+      var y = this.pY + moveR[a][1];
+      var col = this.col;
+      var bbb = false;
+      if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+        var promise = new Promise(function (resolve, reject) {
+          for (let e = 0; e < pieces.length; e++) {
+            var x1 = pieces[e].pX;
+            var y1 = pieces[e].pY;
+            if (x == x1 & y == y1) {
+              counter = 1;
+              bbb = true;
+              if (col != pieces[e].col)
+                forwardX1.push([x, y]);
             }
-          });
-          if (bbb) {
-            break loop5;
           }
-
-          if (counter == 0) {
-            forwardX1.push([x, y]);
-          }
-        } else {
+        });
+        if (bbb) {
           break loop5;
         }
-      }
-    loop6:
-      for (let a = 0; a < moveL.length; a++) {
-        var counter = 0;
-        var x = this.pX + moveL[a][0];
-        var y = this.pY + moveL[a][1];
-        var col = this.col;
-        var bbb = false;
-        if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-          var promise = new Promise(function (resolve, reject) {
-            for (let e = 0; e < pieces.length; e++) {
-              var x1 = pieces[e].pX;
-              var y1 = pieces[e].pY;
-              if (x == x1 & y == y1) {
-                counter = 1;
-                bbb = true;
-                if (col != pieces[e].col)
-                  forwardX1.push([x, y]);
-              }
-            }
-          });
-          if (bbb) {
-            break loop6;
-          }
 
-          if (counter == 0) {
-            forwardX1.push([x, y]);
+        if (counter == 0) {
+          forwardX1.push([x, y]);
+        }
+      } else {
+        break loop5;
+      }
+    }
+    loop6:
+    for (let a = 0; a < moveL.length; a++) {
+      var counter = 0;
+      var x = this.pX + moveL[a][0];
+      var y = this.pY + moveL[a][1];
+      var col = this.col;
+      var bbb = false;
+      if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+        var promise = new Promise(function (resolve, reject) {
+          for (let e = 0; e < pieces.length; e++) {
+            var x1 = pieces[e].pX;
+            var y1 = pieces[e].pY;
+            if (x == x1 & y == y1) {
+              counter = 1;
+              bbb = true;
+              if (col != pieces[e].col)
+                forwardX1.push([x, y]);
+            }
           }
-        } else {
+        });
+        if (bbb) {
           break loop6;
         }
+
+        if (counter == 0) {
+          forwardX1.push([x, y]);
+        }
+      } else {
+        break loop6;
       }
+    }
     loop7:
-      for (let a = 0; a < moveB.length; a++) {
-        var counter = 0;
-        var x = this.pX + moveB[a][0];
-        var y = this.pY + moveB[a][1];
-        var col = this.col;
-        var bbb = false;
-        if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-          var promise = new Promise(function (resolve, reject) {
-            for (let e = 0; e < pieces.length; e++) {
-              var x1 = pieces[e].pX;
-              var y1 = pieces[e].pY;
-              if (x == x1 & y == y1) {
-                counter = 1;
-                bbb = true;
-                if (col != pieces[e].col)
-                  forwardX1.push([x, y]);
-              }
+    for (let a = 0; a < moveB.length; a++) {
+      var counter = 0;
+      var x = this.pX + moveB[a][0];
+      var y = this.pY + moveB[a][1];
+      var col = this.col;
+      var bbb = false;
+      if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+        var promise = new Promise(function (resolve, reject) {
+          for (let e = 0; e < pieces.length; e++) {
+            var x1 = pieces[e].pX;
+            var y1 = pieces[e].pY;
+            if (x == x1 & y == y1) {
+              counter = 1;
+              bbb = true;
+              if (col != pieces[e].col)
+                forwardX1.push([x, y]);
             }
-          });
-          if (bbb) {
-            break loop7;
           }
-          if (counter == 0) {
-            forwardX1.push([x, y]);
-          }
-        } else {
+        });
+        if (bbb) {
           break loop7;
         }
+        if (counter == 0) {
+          forwardX1.push([x, y]);
+        }
+      } else {
+        break loop7;
       }
+    }
     loop8:
-      for (let a = 0; a < moveT.length; a++) {
-        var counter = 0;
-        var x = this.pX + moveT[a][0];
-        var y = this.pY + moveT[a][1];
-        var col = this.col;
-        var bbb = false;
-        if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-          var promise = new Promise(function (resolve, reject) {
-            for (let e = 0; e < pieces.length; e++) {
-              var x1 = pieces[e].pX;
-              var y1 = pieces[e].pY;
-              if (x == x1 & y == y1) {
-                counter = 1;
-                bbb = true;
-                if (col != pieces[e].col)
-                  forwardX1.push([x, y]);
-              }
+    for (let a = 0; a < moveT.length; a++) {
+      var counter = 0;
+      var x = this.pX + moveT[a][0];
+      var y = this.pY + moveT[a][1];
+      var col = this.col;
+      var bbb = false;
+      if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+        var promise = new Promise(function (resolve, reject) {
+          for (let e = 0; e < pieces.length; e++) {
+            var x1 = pieces[e].pX;
+            var y1 = pieces[e].pY;
+            if (x == x1 & y == y1) {
+              counter = 1;
+              bbb = true;
+              if (col != pieces[e].col)
+                forwardX1.push([x, y]);
             }
-          });
-          if (bbb) {
-            break loop8;
           }
-
-          if (counter == 0) {
-            forwardX1.push([x, y]);
-          }
-        } else {
+        });
+        if (bbb) {
           break loop8;
         }
+
+        if (counter == 0) {
+          forwardX1.push([x, y]);
+        }
+      } else {
+        break loop8;
       }
+    }
     return forwardX1;
 
   }
@@ -576,128 +576,128 @@ class Camel {
     ];
     let forwardX1 = [];
     loop1:
-      for (let a = 0; a < movesRF.length; a++) {
-        var counter = 0;
-        var x = this.pX + movesRF[a][0];
-        var y = this.pY + movesRF[a][1];
-        var col = this.col;
-        var bbb = false;
-        if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-          var promise = new Promise(function (resolve, reject) {
-            for (let e = 0; e < pieces.length; e++) {
-              var x1 = pieces[e].pX;
-              var y1 = pieces[e].pY;
-              if (x == x1 & y == y1) {
-                counter = 1;
-                bbb = true;
-                if (col != pieces[e].col)
-                  forwardX1.push([x, y]);
-              }
+    for (let a = 0; a < movesRF.length; a++) {
+      var counter = 0;
+      var x = this.pX + movesRF[a][0];
+      var y = this.pY + movesRF[a][1];
+      var col = this.col;
+      var bbb = false;
+      if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+        var promise = new Promise(function (resolve, reject) {
+          for (let e = 0; e < pieces.length; e++) {
+            var x1 = pieces[e].pX;
+            var y1 = pieces[e].pY;
+            if (x == x1 & y == y1) {
+              counter = 1;
+              bbb = true;
+              if (col != pieces[e].col)
+                forwardX1.push([x, y]);
             }
-          });
-          if (bbb) {
-            break loop1;
           }
-
-          if (counter == 0) {
-            forwardX1.push([x, y]);
-          }
-        } else {
+        });
+        if (bbb) {
           break loop1;
         }
-      }
-    loop2:
-      for (let a = 0; a < movesLF.length; a++) {
-        var counter = 0;
-        var x = this.pX + movesLF[a][0];
-        var y = this.pY + movesLF[a][1];
-        var col = this.col;
-        var bbb = false;
-        if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-          var promise = new Promise(function (resolve, reject) {
-            for (let e = 0; e < pieces.length; e++) {
-              var x1 = pieces[e].pX;
-              var y1 = pieces[e].pY;
-              if (x == x1 & y == y1) {
-                counter = 1;
-                bbb = true;
-                if (col != pieces[e].col)
-                  forwardX1.push([x, y]);
-              }
-            }
-          });
-          if (bbb) {
-            break loop2;
-          }
 
-          if (counter == 0) {
-            forwardX1.push([x, y]);
+        if (counter == 0) {
+          forwardX1.push([x, y]);
+        }
+      } else {
+        break loop1;
+      }
+    }
+    loop2:
+    for (let a = 0; a < movesLF.length; a++) {
+      var counter = 0;
+      var x = this.pX + movesLF[a][0];
+      var y = this.pY + movesLF[a][1];
+      var col = this.col;
+      var bbb = false;
+      if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+        var promise = new Promise(function (resolve, reject) {
+          for (let e = 0; e < pieces.length; e++) {
+            var x1 = pieces[e].pX;
+            var y1 = pieces[e].pY;
+            if (x == x1 & y == y1) {
+              counter = 1;
+              bbb = true;
+              if (col != pieces[e].col)
+                forwardX1.push([x, y]);
+            }
           }
-        } else {
+        });
+        if (bbb) {
           break loop2;
         }
+
+        if (counter == 0) {
+          forwardX1.push([x, y]);
+        }
+      } else {
+        break loop2;
       }
+    }
     loop3:
-      for (let a = 0; a < movesLB.length; a++) {
-        var counter = 0;
-        var x = this.pX + movesLB[a][0];
-        var y = this.pY + movesLB[a][1];
-        var col = this.col;
-        var bbb = false;
-        if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-          var promise = new Promise(function (resolve, reject) {
-            for (let e = 0; e < pieces.length; e++) {
-              var x1 = pieces[e].pX;
-              var y1 = pieces[e].pY;
-              if (x == x1 & y == y1) {
-                counter = 1;
-                bbb = true;
-                if (col != pieces[e].col)
-                  forwardX1.push([x, y]);
-              }
+    for (let a = 0; a < movesLB.length; a++) {
+      var counter = 0;
+      var x = this.pX + movesLB[a][0];
+      var y = this.pY + movesLB[a][1];
+      var col = this.col;
+      var bbb = false;
+      if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+        var promise = new Promise(function (resolve, reject) {
+          for (let e = 0; e < pieces.length; e++) {
+            var x1 = pieces[e].pX;
+            var y1 = pieces[e].pY;
+            if (x == x1 & y == y1) {
+              counter = 1;
+              bbb = true;
+              if (col != pieces[e].col)
+                forwardX1.push([x, y]);
             }
-          });
-          if (bbb) {
-            break loop3;
           }
-          if (counter == 0) {
-            forwardX1.push([x, y]);
-          }
-        } else {
+        });
+        if (bbb) {
           break loop3;
         }
+        if (counter == 0) {
+          forwardX1.push([x, y]);
+        }
+      } else {
+        break loop3;
       }
+    }
     loop4:
-      for (let a = 0; a < movesRB.length; a++) {
-        var counter = 0;
-        var x = this.pX + movesRB[a][0];
-        var y = this.pY + movesRB[a][1];
-        var col = this.col;
-        var bbb = false;
-        if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-          var promise = new Promise(function (resolve, reject) {
-            for (let e = 0; e < pieces.length; e++) {
-              var x1 = pieces[e].pX;
-              var y1 = pieces[e].pY;
-              if (x == x1 & y == y1) {
-                counter = 1;
-                bbb = true;
-                if (col != pieces[e].col)
-                  forwardX1.push([x, y]);
-              }
+    for (let a = 0; a < movesRB.length; a++) {
+      var counter = 0;
+      var x = this.pX + movesRB[a][0];
+      var y = this.pY + movesRB[a][1];
+      var col = this.col;
+      var bbb = false;
+      if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+        var promise = new Promise(function (resolve, reject) {
+          for (let e = 0; e < pieces.length; e++) {
+            var x1 = pieces[e].pX;
+            var y1 = pieces[e].pY;
+            if (x == x1 & y == y1) {
+              counter = 1;
+              bbb = true;
+              if (col != pieces[e].col)
+                forwardX1.push([x, y]);
             }
-          });
-          if (bbb) {
-            break loop4;
           }
-
-          if (counter == 0) {
-            forwardX1.push([x, y]);
-          }
-        } else {
+        });
+        if (bbb) {
           break loop4;
         }
+
+        if (counter == 0) {
+          forwardX1.push([x, y]);
+        }
+      } else {
+        break loop4;
       }
+    }
     return forwardX1;
 
 
@@ -844,130 +844,130 @@ class Elephent {
     ];
     let forwardX1 = [];
     loop1:
-      for (let a = 0; a < moveR.length; a++) {
-        var counter = 0;
-        var x = this.pX + moveR[a][0];
-        var y = this.pY + moveR[a][1];
-        var col = this.col;
-        var bbb = false;
-        if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-          var promise = new Promise(function (resolve, reject) {
-            for (let e = 0; e < pieces.length; e++) {
-              var x1 = pieces[e].pX;
-              var y1 = pieces[e].pY;
-              if (x == x1 & y == y1) {
-                counter = 1;
-                bbb = true;
-                if (col != pieces[e].col)
-                  forwardX1.push([x, y]);
-              }
+    for (let a = 0; a < moveR.length; a++) {
+      var counter = 0;
+      var x = this.pX + moveR[a][0];
+      var y = this.pY + moveR[a][1];
+      var col = this.col;
+      var bbb = false;
+      if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+        var promise = new Promise(function (resolve, reject) {
+          for (let e = 0; e < pieces.length; e++) {
+            var x1 = pieces[e].pX;
+            var y1 = pieces[e].pY;
+            if (x == x1 & y == y1) {
+              counter = 1;
+              bbb = true;
+              if (col != pieces[e].col)
+                forwardX1.push([x, y]);
             }
-          });
-          if (bbb) {
-            break loop1;
           }
-
-          if (counter == 0) {
-            forwardX1.push([x, y]);
-          }
-        } else {
+        });
+        if (bbb) {
           break loop1;
         }
-      }
-    loop2:
-      for (let a = 0; a < moveL.length; a++) {
-        var counter = 0;
-        var x = this.pX + moveL[a][0];
-        var y = this.pY + moveL[a][1];
-        var col = this.col;
-        var bbb = false;
-        if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-          var promise = new Promise(function (resolve, reject) {
-            for (let e = 0; e < pieces.length; e++) {
-              var x1 = pieces[e].pX;
-              var y1 = pieces[e].pY;
-              if (x == x1 & y == y1) {
-                counter = 1;
-                bbb = true;
-                if (col != pieces[e].col)
-                  forwardX1.push([x, y]);
-              }
-            }
-          });
-          if (bbb) {
-            break loop2;
-          }
 
-          if (counter == 0) {
-            forwardX1.push([x, y]);
+        if (counter == 0) {
+          forwardX1.push([x, y]);
+        }
+      } else {
+        break loop1;
+      }
+    }
+    loop2:
+    for (let a = 0; a < moveL.length; a++) {
+      var counter = 0;
+      var x = this.pX + moveL[a][0];
+      var y = this.pY + moveL[a][1];
+      var col = this.col;
+      var bbb = false;
+      if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+        var promise = new Promise(function (resolve, reject) {
+          for (let e = 0; e < pieces.length; e++) {
+            var x1 = pieces[e].pX;
+            var y1 = pieces[e].pY;
+            if (x == x1 & y == y1) {
+              counter = 1;
+              bbb = true;
+              if (col != pieces[e].col)
+                forwardX1.push([x, y]);
+            }
           }
-        } else {
+        });
+        if (bbb) {
           break loop2;
         }
-      }
-    loop3:
-      for (let a = 0; a < moveB.length; a++) {
-        var counter = 0;
-        var x = this.pX + moveB[a][0];
-        var y = this.pY + moveB[a][1];
-        var col = this.col;
-        var bbb = false;
-        if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-          var promise = new Promise(function (resolve, reject) {
-            for (let e = 0; e < pieces.length; e++) {
-              var x1 = pieces[e].pX;
-              var y1 = pieces[e].pY;
-              if (x == x1 & y == y1) {
-                counter = 1;
-                bbb = true;
-                if (col != pieces[e].col)
-                  forwardX1.push([x, y]);
-              }
-            }
-          });
-          if (bbb) {
 
-   
-            break loop3;
+        if (counter == 0) {
+          forwardX1.push([x, y]);
+        }
+      } else {
+        break loop2;
+      }
+    }
+    loop3:
+    for (let a = 0; a < moveB.length; a++) {
+      var counter = 0;
+      var x = this.pX + moveB[a][0];
+      var y = this.pY + moveB[a][1];
+      var col = this.col;
+      var bbb = false;
+      if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+        var promise = new Promise(function (resolve, reject) {
+          for (let e = 0; e < pieces.length; e++) {
+            var x1 = pieces[e].pX;
+            var y1 = pieces[e].pY;
+            if (x == x1 & y == y1) {
+              counter = 1;
+              bbb = true;
+              if (col != pieces[e].col)
+                forwardX1.push([x, y]);
+            }
           }
-          if (counter == 0) {
-            forwardX1.push([x, y]);
-          }
-        } else {
+        });
+        if (bbb) {
+
+
           break loop3;
         }
+        if (counter == 0) {
+          forwardX1.push([x, y]);
+        }
+      } else {
+        break loop3;
       }
+    }
     loop4:
-      for (let a = 0; a < moveT.length; a++) {
-        var counter = 0;
-        var x = this.pX + moveT[a][0];
-        var y = this.pY + moveT[a][1];
-        var col = this.col;
-        var bbb = false;
-        if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
-          var promise = new Promise(function (resolve, reject) {
-            for (let e = 0; e < pieces.length; e++) {
-              var x1 = pieces[e].pX;
-              var y1 = pieces[e].pY;
-              if (x == x1 & y == y1) {
-                counter = 1;
-                bbb = true;
-                if (col != pieces[e].col)
-                  forwardX1.push([x, y]);
-              }
+    for (let a = 0; a < moveT.length; a++) {
+      var counter = 0;
+      var x = this.pX + moveT[a][0];
+      var y = this.pY + moveT[a][1];
+      var col = this.col;
+      var bbb = false;
+      if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+        var promise = new Promise(function (resolve, reject) {
+          for (let e = 0; e < pieces.length; e++) {
+            var x1 = pieces[e].pX;
+            var y1 = pieces[e].pY;
+            if (x == x1 & y == y1) {
+              counter = 1;
+              bbb = true;
+              if (col != pieces[e].col)
+                forwardX1.push([x, y]);
             }
-          });
-          if (bbb) {
-            break loop4;
           }
-
-          if (counter == 0) {
-            forwardX1.push([x, y]);
-          }
-        } else {
+        });
+        if (bbb) {
           break loop4;
         }
+
+        if (counter == 0) {
+          forwardX1.push([x, y]);
+        }
+      } else {
+        break loop4;
       }
+    }
     return forwardX1;
 
   }
